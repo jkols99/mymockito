@@ -2,14 +2,13 @@ package cz.cuni.mff.mymockito;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class MyMockitoTest {
 
     @Test
-    public void simpleTest() {
+    public void simpleTest()
+    {
         Object o = MyMockito.mock(Object.class);
 
         MyMockito.when(o.hashCode()).thenReturn(10);
@@ -18,7 +17,8 @@ public class MyMockitoTest {
     }
 
     @Test
-    public void multipleTest() {
+    public void multipleTest()
+    {
         MyTestClass m1 = MyMockito.mock(MyTestClass.class);
         MyTestClass m2 = MyMockito.mock(MyTestClass.class);
 
@@ -32,20 +32,22 @@ public class MyMockitoTest {
     }
 
     @Test
-    public void testArg() {
+    public void testArg()
+    {
         Object o = MyMockito.mock(Object.class);
 
-        assertFalse(o.equals("true"));
+        assertNotEquals("true", o);
 
         MyMockito.when(o.equals("true")).thenReturn(true);
 
-        assertTrue(o.equals("true"));
-        assertFalse(o.equals("anythingElse"));
+        assertEquals("true", o);
+        assertNotEquals("anythingElse", o);
     }
 
-    public static class MyTestClass {
+    public static class MyTestClass
+    {
 
-        public String getValue() {
+        String getValue() {
             return "value";
         }
 
